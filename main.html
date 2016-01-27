@@ -1,0 +1,67 @@
+<div>
+	<button class="btn btn-primary" ng-click="login()">facebook登入</button>
+	<h1><span>現在正以{{authData.facebook.displayName}}的身份登入</span></h1>
+	</br>
+<form>
+
+<!--<div class="form-group">
+	<label class="control-label " for="focusedInput">輸入姓名：</label>
+	<input type="text" placeholder="姓名" ng-model="post.name" class="form-control">
+</div>-->
+
+<div class="form-group">
+<label class="control-label " for="focusedInput">輸入要說的話：</label>
+<input type="text" placeholder="講的話.." ng-model="post.description" class="form-control">
+</div>
+
+<!--<div class="form-group">
+	<label class="control-label " for="focusedInput">輸入url:</label>
+<input type="text" placeholder="URL" ng-model="post.url" class="form-control">
+</div>-->
+
+<button ng-click="savePost(post)" class="btn btn-success btn-block">儲存並送出</button>
+
+</form>
+</div>
+
+</br>
+
+<div ng-repeat="post in posts">
+<h3><span>{{post.user}}發表：{{post.description}}</span></h3>
+ <!--<h2><a ng-href="{{post.url}}">{{post.name}}</a></h2>-->
+<!--<h3>{{post.description}}</h3>-->
+<!--<p>{{post.$id}}</p>-->
+  <button ng-click="deletePost(post)" class="btn btn-danger">刪除貼文</button> 
+  <button ng-click="addVote(post)" class="btn btn-primary">讚</button>
+  <span>{{post.votes}}</span>
+   </br>
+   </br>
+
+
+
+
+
+   <div class="panel panel-default" ng-repeat="(key,comment) in post.comments">
+          <div class="panel-footer">
+           <a ng-href="https://facebook.com/{{comment.userid}}">{{comment.user}}：{{comment.text}}</a>
+           <!--<a>:{{comment.text}}</a>-->
+           <button class="btn btn-danger" ng-click="removeComment(post,key)">移除評論</button>
+          </div>
+         
+          <!--<div class="panel-footer">{{comment.text}}</div>-->
+   </div>
+
+
+
+
+   <form>
+   	<div class="input-group">
+      <input ng-model="comment.text" class="form-control">
+       <div class="input-group-btn">
+       	<button ng-click="addComment(post,comment)" class="btn btn-success">{{comment.text}}：{{post.description}}的留言評論</button>
+       </div>
+     </div>
+   </form>
+
+</div>
+</br>
